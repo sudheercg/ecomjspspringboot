@@ -1,16 +1,26 @@
 package com.example.jspwithboot.controllers;
 
-import com.example.jspwithboot.model.User;
-import com.example.jspwithboot.service.iface.UserService;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
+import com.example.jspwithboot.model.User;
+import com.example.jspwithboot.service.iface.UserService;
+import com.example.jspwithboot.service.impl.EmailService;
 
 @Controller
 @RequestMapping("/users")
 public class UserController {
+	
+	 @Autowired
+	    private EmailService emailService;
 
     private final UserService userService;
 
@@ -36,6 +46,15 @@ public class UserController {
     // Handle user creation form submission
     @PostMapping("/create")
     public String createUser(@ModelAttribute User user) {
+    	 try {
+             String subject = "Welcome to CgEcom!";
+             String body = "<h1>Thank you for registering, " + user.getUsername() + "!</h1><p>We are glad to have you on board.</p>";
+             emailService.sendEmail(user.getEmail(), subject, body);
+         } catch (Exception e) {
+             e.printStackTrace();
+             // Handle exception appropriately
+         }
+
         userService.createUser(user.getUsername(), user.getPassword(), user.getRole(),user.getPhone_number(),user.getEmail());
         return "redirect:/users"; // After creating, redirect to user list
     }

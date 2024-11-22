@@ -26,6 +26,26 @@
                     <option value="ADMIN">Admin</option>
                 </select>
             </div>
+            
+            
+            
+            
+               <div class="form-group">
+                <label for="phone_number">Phone Number:</label>
+                <input type="text" id="phone_number" name="phone_number" class="form-control" required>
+            </div>
+            
+            
+              
+               <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" class="form-control" required>
+            </div>
+            
+            
+            
+            
+            
             <button type="submit" class="btn btn-primary">Create User</button>
         </form>
         <a href="/users" class="btn btn-secondary mt-3">Back to User List</a>

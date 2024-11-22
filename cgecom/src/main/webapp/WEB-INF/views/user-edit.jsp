@@ -28,6 +28,19 @@
                     <option value="ADMIN" ${user.role == 'ADMIN' ? 'selected' : ''}>Admin</option>
                 </select>
             </div>
+            
+            <div class="form-group">
+                <label for="phone_number">Phone Number:</label>
+                <input type="text" id="phone_number" name="phone_number" class="form-control" value="${user.phone_number}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" class="form-control" value="${user.email}" required>
+            </div>
+            
+            
+            
             <button type="submit" class="btn btn-primary">Update User</button>
         </form>
         <a href="/users" class="btn btn-secondary mt-3">Back to User List</a>

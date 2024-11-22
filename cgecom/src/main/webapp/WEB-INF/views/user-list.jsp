@@ -18,6 +18,8 @@
                     <th>ID</th>
                     <th>Username</th>
                     <th>Role</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -27,6 +29,10 @@
                         <td>${user.id}</td>
                         <td>${user.username}</td>
                         <td>${user.role}</td>
+                        <td>${user.phone_number}</td>
+                        <td>${user.email}</td>
+                        
+                        
                         <td>
                             <a href="/users/edit/${user.id}" class="btn btn-warning btn-sm">Edit</a>
                             <a href="/users/delete/${user.id}" class="btn btn-danger btn-sm">Delete</a>
