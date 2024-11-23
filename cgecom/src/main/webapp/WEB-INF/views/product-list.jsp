@@ -9,43 +9,46 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center">Product List</h1>
+        <h1 class="text-center my-4">Product List</h1>
         
-        <!-- Display a welcome message with username -->
+        <!-- Welcome Message -->
         <c:if test="${loggedInUser != null}">
-            <p class="text-right">Welcome, ${loggedInUser.username}! <a href="/logout" class="btn btn-danger btn-sm">Logout</a></p>
+            <p class="text-right">Welcome, ${loggedInUser.username}! 
+                <a href="/logout" class="btn btn-danger btn-sm">Logout</a>
+            </p>
         </c:if>
         
-        <!-- Table to display products -->
-        <table class="table table-striped table-bordered">
-            <thead class="thead-dark">
-                <tr>
-                    <th>Product ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="product" items="${products}">
-                    <tr>
-                        <td>${product.id}</td>
-                        <td>${product.name}</td>
-                        <td>${product.description}</td>
-                        <td>${product.price}</td>
-                        <td>
+        <!-- Products Grid -->
+        <div class="row">
+            <c:forEach var="product" items="${products}">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <!-- Product Image -->
+                        <img src="${product.imagePath}" class="card-img-top" alt="${product.name}" style="height: 200px; object-fit: cover;">
+                        
+                        <div class="card-body">
+                            <!-- Product Name -->
+                            <h5 class="card-title">${product.name}</h5>
+                            
+                            <!-- Product Description -->
+                            <p class="card-text text-truncate">${product.description}</p>
+                            
+                            <!-- Product Price -->
+                            <p class="text-primary font-weight-bold">${product.price}</p>
+                        </div>
+                        
+                        <div class="card-footer bg-transparent border-0">
                             <!-- Add to Cart Form -->
                             <form action="/cart/add" method="post" class="d-inline">
                                 <input type="hidden" name="productId" value="${product.id}">
                                 <input type="number" name="quantity" value="1" min="1" class="form-control-sm d-inline" style="width: 60px;">
                                 <button type="submit" class="btn btn-primary btn-sm">Add to Cart</button>
                             </form>
-                        </td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
         
         <!-- Link to Add Product (Admin Only) -->
         <c:if test="${loggedInUser.role == 'ADMIN'}">

@@ -8,7 +8,7 @@
 <body>
     <div class="container">
         <h1>Add New Product</h1>
-        <form action="/products/add" method="post" class="mt-3">
+        <form action="/products/add" method="post"  enctype="multipart/form-data" class="mt-3">
             <div class="form-group">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" class="form-control" required>
@@ -21,6 +21,13 @@
                 <label for="price">Price:</label>
                 <input type="number" id="price" name="price" class="form-control" step="0.01" required>
             </div>
+            
+                 <div class="form-group">
+                     <label for="imageFile">Product Image</label>
+              <input type="file" name="imageFile" id="imageFile" class="form-control-file">
+             </div>
+            
+            
             <button type="submit" class="btn btn-primary">Add Product</button>
         </form>
         <a href="/products" class="btn btn-secondary mt-3">Back to Product List</a>

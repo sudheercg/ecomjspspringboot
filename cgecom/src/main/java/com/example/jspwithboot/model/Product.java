@@ -1,5 +1,8 @@
 package com.example.jspwithboot.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,9 +19,49 @@ public class Product {
     private String name;
     private String description;
     private double price;
+    
+    @Column(name="image_path")
+    private String  imagePath;
+    
+  /*  
+    private transient MultipartFile imageFile; // Temporary field for file upload (no persistence)
+  
+    public MultipartFile getImageFile() {
+		return imageFile;
+	}
 
-    // Ensure the stock field is fully removed
-    // Getters and setters for existing fields
+	public void setImageFile(MultipartFile imageFile) {
+		this.imageFile = imageFile;
+	}
+*/
+    
+    
+    
+    private transient MultipartFile imageFile;
+
+    public MultipartFile getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(MultipartFile imageFile) {
+        this.imageFile = imageFile;
+    }
+    
+    
+    
+    
+    
+    
+    
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
+	// Getters and setters for existing fields
     public int getId() {
         return id;
     }
